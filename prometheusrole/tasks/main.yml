@@ -1,0 +1,27 @@
+---
+- hosts: all  # Define the target hosts (e.g., all or specific group)
+  become: yes  # Use sudo privileges
+  tasks:
+    - name: Install Prometheus binary
+      ansible.builtin.get_url:
+        url: https://github.com/prometheus/prometheus/releases/download/v2.54.0/prometheus-2.54.0.linux-amd64.tar.gz
+        dest: /home/ubuntu/prometheus-2.54.0.linux-amd64.tar.gz
+        mode: '0644'  # Ensure mode is '0644' (correct format)
+
+    - name: Untar Prometheus binary file
+      ansible.builtin.unarchive:
+        src: "/home/ubuntu/prometheus-2.54.0.linux-amd64.tar.gz"
+        dest: /home/ubuntu
+        remote_src: yes
+
+    - name: Verify the directory (list contents)
+      ansible.builtin.command:
+        cmd: "pwd"
+      args:
+        chdir: "/home/ubuntu/prometheus-2.54.0.linux-amd64"
+
+    - name: Run Prometheus
+      ansible.builtin.shell: "./prometheus --config.file=prometheus.yml"
+      args:
+        chdir: "/home/ubuntu/prometheus-2.54.0.linux-amd64"
+

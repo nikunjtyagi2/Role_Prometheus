@@ -1,0 +1,5 @@
+---
+- hosts: web
+  become: true
+  roles:
+    - /home/ubuntu/PRole/node_exporter
