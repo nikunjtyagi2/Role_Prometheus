@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        REPO_URL = 'https://github.com/vikram445/Prometheus_role.git'   
-        INSTALL_WORKSPACE = "/var/lib/jenkins/workspace/Prometheus_role"
+        REPO_URL = 'https://github.com/nikunjtyagi2/Role_Prometheus.git'   
+        INSTALL_WORKSPACE = "/var/lib/jenkins/workspace/Role_Prometheus.git"
     }
 
     stages {
